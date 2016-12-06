@@ -1,0 +1,37 @@
+p3-1 )
+
+Soy el proceso 3658 antes de crear otro proceso
+Soy el proceso 3658 y mi padre es 2579
+Soy el proceso 3659 y mi padre es 3658
+
+F   UID      PID  PPID PRI   NI   VSZ   RSS WCHAN  STAT TTY        TIME COMMAND
+0 1111131922 2579 2576 20    0  27656  4904 wait   Ss   pts/1      0:00 /bin/bash
+0 1111131922 3684 2579 20    0   4160   352 hrtime S    pts/1      0:00 ./p3-1
+1 1111131922 3685 3684 20    0   4160    92 hrtime S    pts/1      0:00 ./p3-1
+0 1111131922 3686 2579 20    0  14712   784 -      R+   pts/1      0:00 ps l
+pr4-3)
+Soy el proceso 21689 y mi padre es 21688
+Soy el proceso 21691 y mi padre es 21688
+Soy el proceso 21693 y mi padre es 21688
+Soy el proceso 21692 y mi padre es 21688
+Soy el proceso 21690 y mi padre es 21688
+F   UID   PID  PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND
+0  1000  1200  1198  20   0   6984  5008 wait_w Ss+  pts/0      0:00 -bash
+0  1000  2541  2539  20   0   6992  5160 wait   Ss   pts/2      0:02 -bash
+0  1000 21694  2541  20   0   1676   312 hrtime S    pts/2      0:00 ./pr4-3
+1  1000 21695 21694  20   0   1680    84 hrtime S    pts/2      0:00 ./pr4-3
+1  1000 21696 21694  20   0   1680    84 hrtime S    pts/2      0:00 ./pr4-3
+1  1000 21697 21694  20   0   1680    84 hrtime S    pts/2      0:00 ./pr4-3
+1  1000 21698 21694  20   0   1680    84 hrtime S    pts/2      0:00 ./pr4-3
+1  1000 21699 21694  20   0   1680    84 hrtime S    pts/2      0:00 ./pr4-3
+0  1000 21702  2541  20   0   4284  1708 -      R+   pts/2      0:00 ps l
+F   UID   PID  PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND
+0  1000  1200  1198  20   0   6984  5008 wait_w Ss+  pts/0      0:00 -bash
+0  1000  2541  2539  20   0   6992  5160 wait   Ss   pts/2      0:02 -bash
+1  1000 21695     1  20   0   1680    84 hrtime S    pts/2      0:00 ./pr4-3
+1  1000 21696     1  20   0   1680    84 hrtime S    pts/2      0:00 ./pr4-3
+1  1000 21697     1  20   0   1680    84 hrtime S    pts/2      0:00 ./pr4-3
+1  1000 21698     1  20   0   1680    84 hrtime S    pts/2      0:00 ./pr4-3
+1  1000 21699     1  20   0   1680    84 hrtime S    pts/2      0:00 ./pr4-3
+0  1000 21703  2541  20   0   4284  1788 -      R+   pts/2      0:00 ps l
+

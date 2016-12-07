@@ -3,7 +3,8 @@
 
 // Main
 main () {
- int i, c, *x;
+ int i, c;
+ int x;
  struct Buffer_Circ bf;
  struct Buffer_Circ *p;
  char * akan;
@@ -12,6 +13,7 @@ main () {
  initbuffer(p);
  // print
  print(p);
+
  // prueba metodos ---
  akan = bc_vacio(p);
  printf("Bucle vacio?: %s\n", akan); 
@@ -29,14 +31,16 @@ main () {
  ok = put_item( 55, p );
  printf("5 inserciones.\n");
  print(p);
+
  // 5 extracciones de datos
- ok = get_item( x, p );
- ok = get_item( x, p );
- ok = get_item( x, p );
- ok = get_item( x, p );
- ok = get_item( x, p );
+ ok = get_item( &x, p );
+ ok = get_item( &x, p );
+ ok = get_item( &x, p );
+ ok = get_item( &x, p );
+ ok = get_item( &x, p );
  printf("5 extracciones.\n");
  print(p);
+
  // 5 inserciones de datos
  ok = put_item( 66, p );
  ok = put_item( 77, p );
@@ -56,8 +60,8 @@ main () {
  printf("------------------------------\n");
 
  // 2 extracciones de datos
- ok = get_item( x, p );
- ok = get_item( x, p );
+ ok = get_item( &x, p );
+ ok = get_item( &x, p );
  printf("2 extracciones.\n");
  print(p);
 
@@ -67,7 +71,8 @@ main () {
  print(p);
 
  // 1 extracciones de datos
- ok = get_item( x, p );
+ ok = get_item( &x, p );
+ printf("EXTRAIDO: %d\n", x);
  printf("1 extracción.\n");
  print(p);
  

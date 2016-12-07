@@ -1,7 +1,6 @@
 /**
-* Para compilar teclea: gcc hola.c -lpthread -o hola
-**/
-
+* Para compilar teclea: gcc x.c -lpthread -o x
+*/
 #include <stdio.h>
 #include <pthread.h>
 #include <string.h>
@@ -25,10 +24,10 @@ void *Productor( void *arg ) // Funcion productor
   }
 
   else {
-  printf("Se ha insertado el numero: %d\n  __________  __________  __________\n", w);
-  print(buffer);
+   printf("Se ha insertado el numero: %d\n--- --- --- --- --- ---\n", w);
+   print(buffer);
   }
-  usleep(2000000); // Retraso 2seg
+  usleep(1000000); // Retraso 2seg
  }
 }
 
@@ -46,13 +45,12 @@ void *Consumidor( void *arg )  // Funcion consumidor
   }
 
   else {
-  printf("Se ha extraido el numero: %d\n  __________  __________  __________\n", *val);
+  printf("Se ha extraido el numero: %d\n--- --- --- --- --- ---\n", *val);
    print(buffer);
   }
   usleep(4000000); // Retraso 4 seg
  }
 }
-
 
 int main()
 {
@@ -70,10 +68,10 @@ int main()
  pthread_attr_init( &atrib );
 
  pthread_create( &t_productor, &atrib, Productor, pbc);
- pthread_create( &t_consumidor, &atrib, Consumidor, pbc);
+// pthread_create( &t_consumidor, &atrib, Consumidor, pbc);
 
  pthread_join( t_productor, NULL);
- pthread_join( t_consumidor, NULL);
+// pthread_join( t_consumidor, NULL);
 
  printf("FIN DE LA APLICACIÓN");
  return 0;

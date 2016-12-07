@@ -8,13 +8,51 @@
 #include <unistd.h>
 #include "buffercircular.c"
 
-void *Imprime( void *ptr )
-{
- char *men;
- men=(char*)ptr;
+#define INTPROD 11
+#define INTCONS 11
+#define NP 9
 
- write(1,men,strlen(men));
+void *Productor( void *arg ) // Funcion productor
+{
+ struct Buffer_Circ *buffer;
+ buffer  = (struct Buffer_Circ*)arg;
+ 
+ int w, err;
+ for(w=0; w < INTPROD; w++){
+  err = put_item(w,buffer);
+  if(err == -1){
+   printf("Error al insertar %d\n", w);
+  }
+
+  else {
+  printf("Se ha insertado el numero: %d\n  __________  __________  __________\n", w);
+  print(buffer);
+  }
+  usleep(2000000); // Retraso 2seg
+ }
 }
+
+void *Consumidor( void *arg )  // Funcion consumidor
+{
+ struct Buffer_Circ *buffer;
+ buffer  = (struct Buffer_Circ*)arg;
+
+ int w, err;
+ int *val;
+ for(w=0; w < INTCONS; w++){
+  err = get_item(val,buffer);
+  if(err == -1){
+   printf("Error al obtener %d\n", *val);
+  }
+
+  else {
+  printf("Se ha extraido el numero: %d\n  __________  __________  __________\n", *val);
+   print(buffer);
+  }
+  usleep(4000000); // Retraso 4 seg
+ }
+}
+
 
 int main()
 {
@@ -25,17 +63,18 @@ int main()
 
  pbc = &bc;              // Apuntar a buff
  initbuffer(pbc);        // Iniciar buffer
- print(pbc);
 
  pthread_attr_t atrib;
- pthread_t productor, consumidor;
+ pthread_t t_productor, t_consumidor;
 
  pthread_attr_init( &atrib );
 
- pthread_create( &productor, &atrib, put_item, pbc);
- pthread_create( &consumidor, &atrib, get_item, pbc);
+ pthread_create( &t_productor, &atrib, Productor, pbc);
+ pthread_create( &t_consumidor, &atrib, Consumidor, pbc);
 
- pthread_join( productor, NULL);
- pthread_join( consumidor, NULL);
- printf("fin aplicación");
+ pthread_join( t_productor, NULL);
+ pthread_join( t_consumidor, NULL);
+
+ printf("FIN DE LA APLICACIÓN");
+ return 0;
 }

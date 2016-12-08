@@ -34,10 +34,15 @@ main () {
 
  // 5 extracciones de datos
  ok = get_item( &x, p );
+ printf("EXTRAIDO: %d\n", x);
  ok = get_item( &x, p );
+ printf("EXTRAIDO: %d\n", x);
  ok = get_item( &x, p );
+ printf("EXTRAIDO: %d\n", x);
  ok = get_item( &x, p );
+ printf("EXTRAIDO: %d\n", x);
  ok = get_item( &x, p );
+ printf("EXTRAIDO: %d\n", x);
  printf("5 extracciones.\n");
  print(p);
 
@@ -61,7 +66,9 @@ main () {
 
  // 2 extracciones de datos
  ok = get_item( &x, p );
+ printf("EXTRAIDO: %d\n", x);
  ok = get_item( &x, p );
+ printf("EXTRAIDO: %d\n", x);
  printf("2 extracciones.\n");
  print(p);
 

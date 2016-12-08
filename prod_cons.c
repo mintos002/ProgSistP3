@@ -7,24 +7,26 @@
 #include <unistd.h>
 #include "buffercircular.c"
 
-#define INTPROD 11
-#define INTCONS 11
-#define NP 9
+#define INTPROD 20
+#define INTCONS 20
 
 void *Productor( void *arg ) // Funcion productor
 {
  struct Buffer_Circ *buffer;
  buffer  = (struct Buffer_Circ*)arg;
  
- int w, err;
+ int w, ins, err;
  for(w=0; w < INTPROD; w++){
-  err = put_item(w,buffer);
+  ins = w+100;
+  err = put_item(ins,buffer);
   if(err == -1){
-   printf("Error al insertar %d\n", w);
+   printf("OP: %d. Error al insertar %d\n", w, ins);
+   printf("------------------------------------------------------------\n");
+
   }
 
   else {
-   printf("Se ha insertado el numero: %d\n--- --- --- --- --- ---\n", w);
+   printf("OP: %d. Se ha INSERTADO el numero: %d\n --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- \n", w, ins);
    print(buffer);
   }
   usleep(1000000); // Retraso 2seg
@@ -37,15 +39,16 @@ void *Consumidor( void *arg )  // Funcion consumidor
  buffer  = (struct Buffer_Circ*)arg;
 
  int w, err;
- int *val;
+ int val;
  for(w=0; w < INTCONS; w++){
-  err = get_item(val,buffer);
+  err = get_item(&val,buffer);
   if(err == -1){
-   printf("Error al obtener %d\n", *val);
+   printf("OP: %d. Error al obtener %d\n", w, val);
+   printf("------------------------------------------------------------\n");
   }
 
   else {
-  printf("Se ha extraido el numero: %d\n--- --- --- --- --- ---\n", *val);
+  printf("OP: %d. Se ha EXTRAIDO el numero: %d\n --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- \n", w, val);
    print(buffer);
   }
   usleep(4000000); // Retraso 4 seg
@@ -68,11 +71,11 @@ int main()
  pthread_attr_init( &atrib );
 
  pthread_create( &t_productor, &atrib, Productor, pbc);
-// pthread_create( &t_consumidor, &atrib, Consumidor, pbc);
+ pthread_create( &t_consumidor, &atrib, Consumidor, pbc);
 
  pthread_join( t_productor, NULL);
-// pthread_join( t_consumidor, NULL);
+ pthread_join( t_consumidor, NULL);
 
- printf("FIN DE LA APLICACIÓN");
+ printf("FIN DE LA APLICACIÓN\n");
  return 0;
 }
